@@ -1,9 +1,7 @@
 package world.srv.yeahbutstill;
 
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.DisplayNameGeneration;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+import org.opentest4j.TestAbortedException;
 import world.srv.yeahbutstill.generator.SimpleDisplayNameGenerator;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,6 +12,26 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CalculatorTest {
 
     private Calculator calculator = new Calculator();
+
+    @BeforeEach
+    public void setUp() {
+        System.out.println("Before each");
+    }
+
+    @BeforeAll
+    public static void beforeAll() {
+        System.out.println("Before all");
+    }
+
+    @AfterAll
+    public static void afterAll() {
+        System.out.println("After all");
+    }
+
+    @AfterEach
+    public void tearDown() {
+        System.out.println("After each");
+    }
 
     @Test
 //    @DisplayName("Test skenario suskes untuk method add(Integer first, Integer second)")
@@ -44,4 +62,12 @@ public class CalculatorTest {
 
     }
 
+    @Test
+    public void testAbortedTest() {
+        var profile = System.getenv("PROFILE");
+        if (!"DEV".equals(profile)) {
+            throw new TestAbortedException("Test dibatalkan karena bukan DEV");
+        }
+        // unit test untuk DEV
+    }
 }
