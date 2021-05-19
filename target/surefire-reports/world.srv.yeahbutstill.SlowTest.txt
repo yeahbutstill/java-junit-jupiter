@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: world.srv.yeahbutstill.SlowTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 4.987 s <<< FAILURE! - in world.srv.yeahbutstill.SlowTest
+slow  Time elapsed: 4.987 s  <<< ERROR!
+java.util.concurrent.TimeoutException: slow() timed out after 5 seconds
+

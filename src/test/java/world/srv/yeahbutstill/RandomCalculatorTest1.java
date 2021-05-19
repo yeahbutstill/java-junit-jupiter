@@ -1,23 +1,22 @@
 package world.srv.yeahbutstill;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.api.extension.Extensions;
-import world.srv.yeahbutstill.resolver.RandomParameterResolver;
+import org.junit.jupiter.api.TestInfo;
 
 import java.util.Random;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@Extensions(value = {@ExtendWith(RandomParameterResolver.class)})
-public class RandomCalculatorTest {
-
-    private Calculator calculator = new Calculator();
+public class RandomCalculatorTest1 extends AbstractCalculatorTest {
 
     @Test
-    public void testRandom(Random random) {
+    public void testRandom(TestInfo info, Random random) {
         var a = random.nextInt();
         var b = random.nextInt();
-        assertEquals(a + b, calculator.add(a, b));
+
+        var result = calculator.add(a, b);
+        var expected = a + b;
+
+        Assertions.assertEquals(a + b, calculator.add(a, b));
     }
 }

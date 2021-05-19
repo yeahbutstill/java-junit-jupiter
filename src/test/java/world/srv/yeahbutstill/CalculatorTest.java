@@ -4,7 +4,9 @@ import org.junit.jupiter.api.*;
 import org.opentest4j.TestAbortedException;
 import world.srv.yeahbutstill.generator.SimpleDisplayNameGenerator;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 // menggunakan generator name
 @DisplayNameGeneration(SimpleDisplayNameGenerator.class)
@@ -12,11 +14,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CalculatorTest {
 
     private Calculator calculator = new Calculator();
-
-    @BeforeEach
-    public void setUp() {
-        System.out.println("Before each");
-    }
 
     @BeforeAll
     public static void beforeAll() {
@@ -28,6 +25,11 @@ public class CalculatorTest {
         System.out.println("After all");
     }
 
+    @BeforeEach
+    public void setUp() {
+        System.out.println("Before each");
+    }
+
     @AfterEach
     public void tearDown() {
         System.out.println("After each");
@@ -36,7 +38,7 @@ public class CalculatorTest {
     @Test
 //    @DisplayName("Test skenario suskes untuk method add(Integer first, Integer second)")
     public void testAddSucces() {
-        var result = calculator.add(10,10);
+        var result = calculator.add(10, 10);
         // this is with Assertions
         assertEquals(20, result);
     }
@@ -70,4 +72,11 @@ public class CalculatorTest {
         }
         // unit test untuk DEV
     }
+
+    @Test
+    public void testAssumption() {
+        assumeTrue("DEV".equals(System.getenv("PROFILE")));
+        // dev unit test
+    }
+
 }
